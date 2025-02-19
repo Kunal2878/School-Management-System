@@ -6,10 +6,10 @@ const UserOption = () => {
   const navigate = useNavigate()
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex flex-col items-center justify-center p-4">
+    <div className="min-h-screen bg-gradient-to-br from-purple-50 to-indigo-100 flex flex-col items-center justify-center p-4">
       <div className="text-center mb-12">
-        <h1 className="text-4xl md:text-6xl font-bold text-blue-400 animate-bounce mb-4">
-          EduCloud
+        <h1 className="text-4xl md:text-6xl font-bold text-purple-400 animate-bounce mb-4">
+          Edu<span className="text-black">Cloud</span>
         </h1>
         <p className="text-gray-600 max-w-2xl mx-auto animate-fade-in">
           Welcome to EduCloud - Your comprehensive educational platform. Choose your role to get started and explore a world of learning possibilities.
@@ -21,7 +21,7 @@ const UserOption = () => {
          to="/admin-signup"
           className="group p-6 bg-white rounded-xl shadow-lg hover:shadow-2xl transform hover:scale-105 transition-all duration-300 flex flex-col items-center"
         >
-          <UserCircle2 className="w-16 h-16 text-blue-400 group-hover:text-blue-600 transition-colors duration-300" />
+          <UserCircle2 className="w-16 h-16 text-purple-400 group-hover:text-purple-500 transition-colors duration-300" />
           <h2 className="text-xl font-semibold mt-4 text-gray-800">Admin</h2>
           <p className="text-gray-600 text-sm mt-2 text-center">
             Manage the entire platform and oversee all operations
@@ -32,7 +32,7 @@ const UserOption = () => {
            to="\teacher-signup"
           className="group p-6 bg-white rounded-xl shadow-lg hover:shadow-2xl transform hover:scale-105 transition-all duration-300 flex flex-col items-center"
         >
-          <Users className="w-16 h-16 text-blue-400 group-hover:text-blue-600 transition-colors duration-300" />
+          <Users className="w-16 h-16 text-purple-400 group-hover:text-purple-500 transition-colors duration-300" />
           <h2 className="text-xl font-semibold mt-4 text-gray-800">Teacher</h2>
           <p className="text-gray-600 text-sm mt-2 text-center">
             Create courses, manage classes, and track student progress
@@ -43,7 +43,7 @@ const UserOption = () => {
          to="\student-signup"
           className="group p-6 bg-white rounded-xl shadow-lg hover:shadow-2xl transform hover:scale-105 transition-all duration-300 flex flex-col items-center"
         >
-          <GraduationCap className="w-16 h-16 text-blue-400 group-hover:text-blue-600 transition-colors duration-300" />
+          <GraduationCap className="w-16 h-16 text-purple-400 group-hover:text-purple-500 transition-colors duration-300" />
           <h2 className="text-xl font-semibold mt-4 text-gray-800">Student</h2>
           <p className="text-gray-600 text-sm mt-2 text-center">
             Access courses, submit assignments, and track your learning journey

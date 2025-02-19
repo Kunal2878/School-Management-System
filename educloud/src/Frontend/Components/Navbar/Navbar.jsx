@@ -1,6 +1,15 @@
 import React, { useEffect, useState } from 'react';
+import Cookies from 'js-cookie';
+import {Link} from 'react-router-dom'
+import { useSelector, useDispatch } from 'react-redux'
+import { setData } from '../../../Store/slice';
+import AttendanceDashboard from '../AttendanceSystem/Attendance'
+import ClassAttendanceTracker from '../AttendanceSystem/MarkAttendanceByClass'
+import ProfilePage from '../../Pages/AboutMe'
+import StudentDetails from '../Classes/AllStudents'
 import { 
   Home, 
+  User,
   Users, 
   BookOpen, 
   Calendar, 
@@ -13,22 +22,33 @@ import {
   FileText,
   Truck,
   Clock,
-  School
+  School,
+  GraduationCap
 } from 'lucide-react';
+
+
+
+
 
 const themeColors = {
   admin: 'bg-purple-400',
-//   teacher: 'bg-blue-600',
+//   teacher: 'bg-purple-600',
 //   student: 'bg-green-600'
 };
 
-const NavBar = ({ userType = 'admin',onMenuClick }) => {
+const NavBar = ({ User,onMenuClick }) => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
+  const handleSignOut = () => {
+    Cookies.remove('token');
+    Cookies.remove('user');
+    window.location.href = '/login';
+  };
+
   return (
-    <nav className="w-full  bg-blue-400 shadow-lg fixed flex flex-row top-0 z-50">
+    <nav className="w-full  bg-purple-400 shadow-lg fixed flex flex-row top-0 z-50">
      
-        <div className="w-full flex flex-row  justify-between">
+        <div className="w-full flex flex-row  justify-between items-center">
           {/* Left side */}
      
             <button 
@@ -39,7 +59,7 @@ const NavBar = ({ userType = 'admin',onMenuClick }) => {
             </button>
            
               <School className="h-8 w-8 space-x-1" />
-              <span className="text-xl font-bold hidden md:block">EduCloud</span>
+              <span className="text-xl font-bold hidden md:block">{User?.name||''}</span>
            
           
 
@@ -78,9 +98,9 @@ const NavBar = ({ userType = 'admin',onMenuClick }) => {
                 transform transition-all duration-200 ease-in-out
                 ${dropdownOpen ? 'opacity-100 scale-100' : 'opacity-0 scale-95 pointer-events-none'}
               `}>
-                <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Your Profile</a>
+                <Link to="/profile" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Your Profile</Link>
                 <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Settings</a>
-                <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Sign out</a>
+                <button onClick={handleSignOut} className="block w-full text-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Sign out</button>
               </div>
             </div>
           </div>
@@ -93,7 +113,7 @@ const NavBar = ({ userType = 'admin',onMenuClick }) => {
 
 const Sidebar = ({ isOpen, userType = 'admin' }) => {
 const [menuOpen, setMenuOpen]=useState(false)
-  console.log("isOpen",isOpen)
+ 
   const [activeItem, setActiveItem] = useState('dashboard');
   const [expandedMenus, setExpandedMenus] = useState({});
   useEffect(()=>{
@@ -108,8 +128,9 @@ const [menuOpen, setMenuOpen]=useState(false)
         label: 'Students', 
         id: 'students',
         submenu: [
-          { label: 'All Students', id: 'all-students' },
-          { label: 'Add Student', id: 'add-student' },
+          { label: 'All Students', id: 'all-students', path:'/all-students'},
+          { label: 'Add Student', id: 'add-student', path:'/add-students'},
+          { label: 'Attendance', id: 'attendance',path:'/mark-attendance' },
         ]
       },
       { 
@@ -123,8 +144,9 @@ const [menuOpen, setMenuOpen]=useState(false)
       },
       { icon: Calendar, label: 'Class Schedule', id: 'schedule' },
       { icon: FileText, label: 'Exam', id: 'exam' },
-      { icon: Bell, label: 'Notice', id: 'notice' },
       { icon: Truck, label: 'Transport', id: 'transport' },
+      { icon: Calendar, label: 'Events', id: 'events' },
+      { icon: Bell, label: 'Announcement', id: 'announcement' },
       { icon: Settings, label: 'Settings', id: 'settings' },
     ],
     teacher: [
@@ -150,10 +172,10 @@ const [menuOpen, setMenuOpen]=useState(false)
   };
 
   return (
-    <div className={`
-      fixed left-0 top-8 h-auto w-64  shadow-lg 
-      transform transition-transform duration-300 ease-in-out
-      ${isOpen ? 'translate-x-0 bg-blue-400' : '-translate-x-full bg-blue-400'}
+    <div className={`text-black
+      fixed left-0 top-8 h-[100vh-4em] w-64 shadow-lg 
+      transform transition-transform duration-300 ease-in-out overflow-y-auto
+      ${isOpen ? 'translate-x-0 bg-purple-100' : '-translate-x-full bg-purple-200'}
       overflow-y-auto
       z-40
     `}>
@@ -165,7 +187,7 @@ const [menuOpen, setMenuOpen]=useState(false)
               className={`
                 w-full flex items-center space-x-3 px-4 py-3 rounded-lg mb-1
                 transition-colors duration-200
-                ${activeItem === item.id ? themeColors[userType].active : 'text-gray-600'}
+                ${activeItem === item.id ? themeColors[userType].active : 'text-black'}
                 ${themeColors[userType].hover}
               `}
             >
@@ -199,7 +221,7 @@ const [menuOpen, setMenuOpen]=useState(false)
                       ${themeColors[userType].hover}
                     `}
                   >
-                    {subItem.label}
+                  <Link to={subItem.path}> {subItem.label}</Link> 
                   </button>
                 ))}
               </div>
@@ -212,23 +234,35 @@ const [menuOpen, setMenuOpen]=useState(false)
 };
 
 // Main Layout Component
-const Nav = ({ children }) => {
+const Nav = ({ children, path }) => {
+  const dispatch = useDispatch()
+  const User = JSON.parse(Cookies.get('user')) || '{}';
+  if(User !== null || User !== undefined) {
+    dispatch(setData(User))
+  }
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [userType, setUserType] = useState('admin'); // Can be 'admin', 'teacher', or 'student'
-console.log("sidebarOpen",sidebarOpen)
+  const [userType, setUserType] = useState('admin'); 
+  const name = useSelector((state) => state.userData.name)
+  const email = useSelector((state) => state.userData.email)
+  const role = useSelector((state) => state.userData.role)
+
   return (
-    <div className="w-full flex flex-col  bg-red-300">
-    
+    <div className="w-full flex flex-col">
       <NavBar 
-        userType={userType} 
+        User={User} 
         onMenuClick={() => setSidebarOpen(!sidebarOpen)} 
       />
-    
       <Sidebar 
         isOpen={sidebarOpen} 
         userType={userType}
       />
-    <div className="absolute top-12 text-black w-full bg-yellow-300 min-h-[100vh]">All components will be rendered here</div>
+<div clssName="w-full min-h-screen absolute top-0 mt-16">
+{path === '/dashboard' && <AttendanceDashboard />}
+{path === '/mark-attendance' && <ClassAttendanceTracker />}
+{path === '/profile' && <ProfilePage />}
+{path === '/all-students' && <StudentDetails />}
+
+</div>
 
       <main className={`
         pt-16 lg:pl-64

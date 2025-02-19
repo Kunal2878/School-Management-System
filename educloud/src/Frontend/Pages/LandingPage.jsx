@@ -95,14 +95,14 @@ const LandingPage = () => {
                 <div className="sm:text-center lg:text-left">
                   <h1 className="text-4xl tracking-tight font-extrabold text-gray-900 sm:text-5xl md:text-6xl">
                     <span className="block xl:inline">Transform Your School</span>{' '}
-                    <span className="block text-blue-400 xl:inline">Management Digitally</span>
+                    <span className="block text-purple-400 xl:inline">Management Digitally</span>
                   </h1>
                   <p className="mt-3 text-base text-gray-500 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0">
                     Streamline administrative tasks, enhance communication, and improve learning outcomes with our comprehensive school management system.
                   </p>
                   <div className="mt-5 sm:mt-8 sm:flex sm:justify-center lg:justify-start">
                     <div className="rounded-md shadow">
-                      <Link to="/user-options" className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-400 hover:bg-blue-500 md:py-4 md:text-lg md:px-10">
+                      <Link to="/user-options" className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-purple-400 hover:bg-purple-500 md:py-4 md:text-lg md:px-10">
                         Get started
                       </Link>
                     </div>
@@ -132,7 +132,7 @@ const LandingPage = () => {
                     <div className="flow-root bg-gray-50 rounded-lg px-6 pb-8">
                       <div className="-mt-6">
                         <div>
-                          <span className="inline-flex items-center justify-center p-3 bg-blue-400 rounded-md shadow-lg">
+                          <span className="inline-flex items-center justify-center p-3 bg-purple-400 rounded-md shadow-lg">
                             <feature.icon className="h-6 w-6 text-white" />
                           </span>
                         </div>
@@ -150,18 +150,18 @@ const LandingPage = () => {
 
       {/* CTA Section */}
       <AnimatedElement>
-        <div className="w-full bg-blue-400">
+        <div className="w-full bg-purple-400">
           <div className="w-full mx-auto py-12 px-4 sm:px-6 lg:py-16 lg:px-8 flex lg:flex-row flex-col lg:items-center lg:justify-between">
             <h2 className="text-3xl font-extrabold tracking-tight text-white sm:text-4xl">
               <span className="block">Ready to get started?</span>
-              <span className="block text-blue-200">Contact us today.</span>
+              <span className="block text-purple-200">Contact us today.</span>
             </h2>
             <div className="w-full lg:w-auto mt-8 flex justify-center lg:mt-0 lg:flex-shrink-0">
               <div className="inline-flex rounded-md shadow ">
-                <button className="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-blue-600 bg-white hover:bg-blue-50">
+                <Link to="/user-options" className="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-purple-500 bg-white hover:bg-blue-50">
                   Get started
                   <ArrowRight className="ml-2 h-5 w-5" />
-                </button>
+                </Link>
               </div>
             </div>
           </div>
