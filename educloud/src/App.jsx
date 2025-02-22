@@ -45,6 +45,14 @@ function App() {
       element:<Nav path={"/all-students"}/>
     },
     {
+      path:'/all-teachers',
+      element:<Nav path={"/all-teachers"}/>
+    },
+    {
+      path:'/assign-classes-subjects',
+      element:<Nav path={"/assign-classes-subjects"}/>
+    },
+    {
       path:'/test',
       element:<Test/>
     }

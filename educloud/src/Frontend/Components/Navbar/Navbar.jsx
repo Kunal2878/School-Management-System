@@ -7,6 +7,9 @@ import AttendanceDashboard from '../AttendanceSystem/Attendance'
 import ClassAttendanceTracker from '../AttendanceSystem/MarkAttendanceByClass'
 import ProfilePage from '../../Pages/AboutMe'
 import StudentDetails from '../Classes/AllStudents'
+import TeacherDetails from '../../Pages/Teacher/AllTeacher'
+import AssignClassSub from '../../Pages/Teacher/AssignClassSub'
+
 import { 
   Home, 
   User,
@@ -138,8 +141,8 @@ const [menuOpen, setMenuOpen]=useState(false)
         label: 'Teachers', 
         id: 'teachers',
         submenu: [
-          { label: 'All Teachers', id: 'all-teachers' },
-          { label: 'Add Teacher', id: 'add-teacher' },
+          { label: 'All Teachers', id: 'all-teachers',path:'/all-teachers' },
+          { label: 'Assign classes/Subjects', id: 'assign-classes-subjects',path:'/assign-classes-subjects' },
         ]
       },
       { icon: Calendar, label: 'Class Schedule', id: 'schedule' },
@@ -261,6 +264,8 @@ const Nav = ({ children, path }) => {
 {path === '/mark-attendance' && <ClassAttendanceTracker />}
 {path === '/profile' && <ProfilePage />}
 {path === '/all-students' && <StudentDetails />}
+{path === '/all-teachers' && <TeacherDetails />}
+{path === '/assign-classes-subjects' && <AssignClassSub />}
 
 </div>
 
