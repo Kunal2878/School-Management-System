@@ -12,6 +12,7 @@ import AssignClassSub from '../../Pages/Teacher/AssignClassSub'
 
 import { 
   Home, 
+  AlignLeft,
   User,
   Users, 
   BookOpen, 
@@ -49,20 +50,24 @@ const NavBar = ({ User,onMenuClick }) => {
   };
 
   return (
-    <nav className="w-full  bg-purple-400 shadow-lg fixed flex flex-row top-0 z-50">
+    <nav className="w-full  shadow-lg fixed flex flex-row top-0 z-50 bg-slate-200 pr-4">
      
         <div className="w-full flex flex-row  justify-between items-center">
           {/* Left side */}
      
-            <button 
-              onClick={onMenuClick}
-              className=" ml-3 rounded-md  transition-colors"
-            >
-              <Menu size={24} />
-            </button>
+            <div className="flex items-center space-x-3 gap-4">
+              <button 
+                onClick={onMenuClick}
+                className=" ml-6 rounded-md  transition-colors cursor-pointer"
+              >
+                <AlignLeft size={24} className='text-purple-500' />
+              </button>
+              {/* <School size={24} className="text-purple-500" /> */}
+              <span className="text-xl font-bold text-black"><span className="text-purple-500">Edu</span> Cloud</span>
+            </div>
            
-              <School className="h-8 w-8 space-x-1" />
-              <span className="text-xl font-bold hidden md:block">{User?.name||''}</span>
+              {/* <School className="h-8 w-8 space-x-1" />
+              <span className="text-xl font-bold hidden md:block">{User?.name||''}</span> */}
            
           
 
@@ -81,18 +86,18 @@ const NavBar = ({ User,onMenuClick }) => {
 
 
           <div className="flex flex-row items-center space-x-4">
-            <button className="p-2 hover:bg-white/10 rounded-full transition-colors">
-              <Bell size={20} />
+            <button className="p-2  rounded-full transition-colors">
+              <Bell size={20} className='text-purple-500' />
             </button>
             
          
             <div className="relative flex flex-col">
               <button 
                 onClick={() => setDropdownOpen(!dropdownOpen)}
-                className="flex items-center space-x-3 p-2 hover:bg-white/10 rounded-full transition-colors"
+                className="flex items-center space-x-3 p-2  rounded-full transition-colors"
               >
-                <div className="size-8 rounded-full bg-white/30"></div>
-                <ChevronDown size={20} className={`transform transition-transform duration-200 ${dropdownOpen ? 'rotate-180' : ''}`} />
+                <div className="size-8 rounded-full border-2 border-purple-500"></div>
+                <ChevronDown size={20} className={` text-black transform transition-transform duration-200 ${dropdownOpen ? 'rotate-180' : ''}`} />
               </button>
 
             
@@ -101,9 +106,9 @@ const NavBar = ({ User,onMenuClick }) => {
                 transform transition-all duration-200 ease-in-out
                 ${dropdownOpen ? 'opacity-100 scale-100' : 'opacity-0 scale-95 pointer-events-none'}
               `}>
-                <Link to="/profile" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Your Profile</Link>
-                <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Settings</a>
-                <button onClick={handleSignOut} className="block w-full text-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Sign out</button>
+                <Link to="/profile" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">My Profile</Link>
+                {/* <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Settings</a> */}
+                <button onClick={handleSignOut} className="block w-full text-center px-4 py-2 text-sm  text-purple-500 border-2 border-purple-500">Sign out</button>
               </div>
             </div>
           </div>
@@ -145,12 +150,11 @@ const [menuOpen, setMenuOpen]=useState(false)
           { label: 'Assign classes/Subjects', id: 'assign-classes-subjects',path:'/assign-classes-subjects' },
         ]
       },
-      { icon: Calendar, label: 'Class Schedule', id: 'schedule' },
+      { icon: BookOpen, label: 'Classes', id: 'classes' },      
       { icon: FileText, label: 'Exam', id: 'exam' },
-      { icon: Truck, label: 'Transport', id: 'transport' },
+      { icon: Clock, label: 'Time table', id: 'time-table' },
       { icon: Calendar, label: 'Events', id: 'events' },
-      { icon: Bell, label: 'Announcement', id: 'announcement' },
-      { icon: Settings, label: 'Settings', id: 'settings' },
+      
     ],
     teacher: [
       { icon: Home, label: 'Dashboard', id: 'dashboard' },
@@ -177,8 +181,8 @@ const [menuOpen, setMenuOpen]=useState(false)
   return (
     <div className={`text-black
       fixed left-0 top-8 h-[100vh-4em] w-64 shadow-lg 
-      transform transition-transform duration-300 ease-in-out overflow-y-auto
-      ${isOpen ? 'translate-x-0 bg-purple-100' : '-translate-x-full bg-purple-200'}
+      bg-gray-50 transform transition-transform duration-300 ease-in-out overflow-y-auto
+      ${isOpen ? 'translate-x-0 ' : '-translate-x-full'}
       overflow-y-auto
       z-40
     `}>
@@ -220,7 +224,7 @@ const [menuOpen, setMenuOpen]=useState(false)
                     className={`
                       w-full text-left py-2 px-4 rounded-lg
                       transition-colors duration-200
-                      ${activeItem === subItem.id ? themeColors[userType].active : 'text-yellow-600'}
+                      ${activeItem === subItem.id ? 'text-purple-500' : 'text-black'}
                       ${themeColors[userType].hover}
                     `}
                   >
@@ -259,7 +263,7 @@ const Nav = ({ children, path }) => {
         isOpen={sidebarOpen} 
         userType={userType}
       />
-<div clssName="w-full min-h-screen absolute top-0 mt-16">
+<div className="w-full min-h-screen absolute top-0 mt-16 bg-slate-200">
 {path === '/dashboard' && <AttendanceDashboard />}
 {path === '/mark-attendance' && <ClassAttendanceTracker />}
 {path === '/profile' && <ProfilePage />}

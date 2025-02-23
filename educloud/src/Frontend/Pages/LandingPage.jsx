@@ -89,7 +89,7 @@ const LandingPage = () => {
       {/* Hero Section */}
       <div className="w-full relative overflow-hidden">
         <div className="w-full mx-auto">
-          <div className="relative z-10 pb-8 bg-white sm:pb-16 md:pb-20 lg:max-w-2xl lg:w-full lg:pb-28 xl:pb-32">
+          <div className="relative z-10 pb-8  sm:pb-16 md:pb-20 lg:max-w-2xl lg:w-full lg:pb-28 xl:pb-32">
             <AnimatedElement>
               <main className="mt-10 mx-auto w-full px-4 sm:mt-12 sm:px-6 md:mt-16 lg:mt-20 lg:px-8 xl:mt-28">
                 <div className="sm:text-center lg:text-left">
@@ -102,8 +102,8 @@ const LandingPage = () => {
                   </p>
                   <div className="mt-5 sm:mt-8 sm:flex sm:justify-center lg:justify-start">
                     <div className="rounded-md shadow">
-                      <Link to="/user-options" className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-purple-400 hover:bg-purple-500 md:py-4 md:text-lg md:px-10">
-                        Get started
+                      <Link to="/user-options" className="w-full flex items-center justify-center px-8 py-3 border-2 text-base font-medium rounded-md text-purple-500 border-purple-500 md:py-4 md:text-lg md:px-10">
+                        Get started <ArrowRight className="ml-2 h-5 w-5" />
                       </Link>
                     </div>
                   </div>
@@ -132,8 +132,8 @@ const LandingPage = () => {
                     <div className="flow-root bg-gray-50 rounded-lg px-6 pb-8">
                       <div className="-mt-6">
                         <div>
-                          <span className="inline-flex items-center justify-center p-3 bg-purple-400 rounded-md shadow-lg">
-                            <feature.icon className="h-6 w-6 text-white" />
+                          <span className="inline-flex items-center justify-center p-3 border-2 border-purple-500 rounded-md shadow-lg">
+                            <feature.icon className="h-6 w-6 text-purple-500" />
                           </span>
                         </div>
                         <h3 className="mt-8 text-lg font-medium text-gray-900 tracking-tight">{feature.title}</h3>
@@ -150,15 +150,15 @@ const LandingPage = () => {
 
       {/* CTA Section */}
       <AnimatedElement>
-        <div className="w-full bg-purple-400">
+        <div className="w-full bg-gray-50">
           <div className="w-full mx-auto py-12 px-4 sm:px-6 lg:py-16 lg:px-8 flex lg:flex-row flex-col lg:items-center lg:justify-between">
-            <h2 className="text-3xl font-extrabold tracking-tight text-white sm:text-4xl">
-              <span className="block">Ready to get started?</span>
+            <h2 className="text-3xl font-extrabold tracking-tight text-black sm:text-4xl">
+              <span className="block"><span className='text-purple-500'>Ready</span> to get started?</span>
               <span className="block text-purple-200">Contact us today.</span>
             </h2>
             <div className="w-full lg:w-auto mt-8 flex justify-center lg:mt-0 lg:flex-shrink-0">
               <div className="inline-flex rounded-md shadow ">
-                <Link to="/user-options" className="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-purple-500 bg-white hover:bg-blue-50">
+                <Link to="/user-options" className="inline-flex items-center justify-center px-5 py-3   text-base font-medium rounded-md text-purple-500 border-2 border-purple-500">
                   Get started
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Link>

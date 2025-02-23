@@ -60,7 +60,7 @@ function App() {
 
   return (
     <Provider store={store}>
-    <div className='w-full flex flex-col bg-white overflow-x-hidden'>
+    <div className='w-full flex flex-col bg-slate-200 overflow-x-hidden'>
       <RouterProvider router={routes} />
     </div>
     </Provider>
