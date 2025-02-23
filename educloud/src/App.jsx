@@ -53,8 +53,17 @@ function App() {
       element:<Nav path={"/assign-classes-subjects"}/>
     },
     {
+      path:'/register-class',
+      element:<Nav path={"/register-class"}/>
+    },
+    {
+      path:'/events',
+      element:<Nav path={"/events"}/>
+    },
+    {
       path:'/test',
       element:<Test/>
+
     }
   ])
 

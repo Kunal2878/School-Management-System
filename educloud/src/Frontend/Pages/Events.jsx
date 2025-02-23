@@ -26,9 +26,10 @@
       try {
         const response = await fetch(`${url}/api/v1/event/getallevents`);
         const data = await response.json();
-        setEvents(data);
+        setEvents(data || []);
       } catch (error) {
         console.error('Error fetching events:', error);
+        setEvents([]);
       }
     };
 
@@ -36,9 +37,10 @@
       try {
         const response = await fetch(`${url}/api/v1/announcement/getallannouncements`);
         const data = await response.json();
-        setAnnouncements(data);
+        setAnnouncements(data || []);
       } catch (error) {
         console.error('Error fetching announcements:', error);
+        setAnnouncements([]);
       }
     };
 
@@ -139,7 +141,8 @@
         {/* Events Section */}
         <div className="w-full lg:w-1/4 h-screen overflow-y-auto">
           <div className="bg-white rounded-lg shadow p-4">
-            <h2 className="text-2xl font-bold mb-4">Events</h2>
+
+            <h2 className="text-2xl font-bold mb-4 text-gray-500">Events</h2>
           
             {/* Create Event Form */}
             <form onSubmit={handleEventSubmit} className="mb-6">
@@ -186,7 +189,7 @@
 
             {/* Events List */}
             <div className="space-y-4">
-              {events.map((event) => (
+              {Array.isArray(events) && events.map((event) => (
                 <div key={event._id} className="border p-4 rounded-lg flex items-start">
                   <input
                     type="checkbox"
@@ -195,8 +198,10 @@
                     onChange={() => handleEventSelection(event._id)}
                   />
                   <div className="flex-1">
-                    <h3 className="font-bold">{event.title}</h3>
-                    <p className="text-gray-600">{event.description}</p>
+
+
+                    <h3 className="font-bold text-gray-500">{event.title}</h3>
+                    <p className="text-gray-500">{event.description}</p>
                     <div className="flex justify-between mt-2 text-sm text-gray-500">
                       <span>{event.date}</span>
                       <span>{event.location}</span>
@@ -211,7 +216,8 @@
         {/* Announcements Section */}
         <div className="w-full lg:w-1/4 h-screen overflow-y-auto">
           <div className="bg-white rounded-lg shadow p-4">
-            <h2 className="text-2xl font-bold mb-4">Announcements</h2>
+
+            <h2 className="text-2xl font-bold mb-4 text-gray-500">Announcements</h2>
           
             {/* Create Announcement Form */}
             <form onSubmit={handleAnnouncementSubmit} className="mb-6">
@@ -244,7 +250,7 @@
 
             {/* Announcements List */}
             <div className="space-y-4">
-              {announcements.map((announcement) => (
+              {Array.isArray(announcements) && announcements.map((announcement) => (
                 <div key={announcement._id} className="border p-4 rounded-lg flex items-start">
                   <input
                     type="checkbox"
@@ -253,8 +259,10 @@
                     onChange={() => handleAnnouncementSelection(announcement._id)}
                   />
                   <div className="flex-1">
-                    <h3 className="font-bold">{announcement.title}</h3>
-                    <p className="text-gray-600">{announcement.description}</p>
+
+
+                    <h3 className="font-bold text-gray-500">{announcement.title}</h3>
+                    <p className="text-gray-500">{announcement.description}</p>
                   </div>
                 </div>
               ))}
@@ -264,5 +272,6 @@
       </div>
     );
   };
+
 
   export default Events;

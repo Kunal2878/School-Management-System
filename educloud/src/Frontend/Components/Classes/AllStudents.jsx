@@ -70,7 +70,7 @@ const StudentDetails = () => {
             <span >Students</span>
           </div>
         </div>
-        <button className="px-4 py-2 bg-purple-500 text-sm text-white rounded-lg hover:bg-purple-600 transition-colors duration-200 transform hover:scale-105">
+        <button className="px-4 py-2 border-2  border-purple-500 text-sm text-purple-500 rounded-lg  transition-colors duration-200 transform hover:scale-105">
           + Add Students
         </button>
       </div>
@@ -104,18 +104,18 @@ const StudentDetails = () => {
       {/* Table */}
       <div className="overflow-x-auto text-gray-600 text-xs">
         <table className="w-full min-w-[768px] pb-10">
-          <thead className='bg-purple-50'>
+          <thead className='bg-white'>
             <tr className="border-b">
-              <th className="p-4">
-                <input type="checkbox" className="rounded bg-white" />
+              <th className="px-6 py-4">
+                <input type="checkbox" className="rounded bg-white border-gray-300 checked:bg-purple-500 checked:border-transparent" />
               </th>
-              <th className="p-4 text-left">Student's Name</th>
-              <th className="p-4 text-center">Email</th>
-              <th className="p-4 text-center">Class</th>
-              <th className="p-4 text-center">Parent Name</th>
-              <th className="p-4 text-center">Parent Contact</th>
-              <th className="p-4 text-center">Date of Birth</th>
-              <th className="p-4 text-center">Action</th>
+              <th className="px-6 py-4 text-left">Student's Name</th>
+              <th className="px-6 py-4 text-center">Email</th>
+              <th className="px-6 py-4 text-center">Class</th>
+              <th className="px-6 py-4 text-center">Parent Name</th>
+              <th className="px-6 py-4 text-center">Parent Contact</th>
+              <th className="px-6 py-4 text-center">Date of Birth</th>
+              <th className="px-6 py-4 text-center">Action</th>
             </tr>
           </thead>
           <tbody>
@@ -124,10 +124,10 @@ const StudentDetails = () => {
                 key={student._id}
                 className="border-b hover:bg-gray-50 transition-colors duration-150 animate-fade-in"
               >
-                <td className="p-4">
-                  <input type="checkbox" className="rounded" />
+                <td className="px-6 py-4">
+                  <input type="checkbox" className="rounded bg-white checked:bg-purple-500 checked:border-transparent" />
                 </td>
-                <td className="p-4">
+                <td className="px-6 py-4">
                   <div className="flex items-center gap-3">
                     <div className="w-8 h-8 bg-purple-100 rounded-full overflow-hidden flex flex-row justify-center items-center">
                     <GraduationCap size={20}/>
@@ -142,12 +142,12 @@ const StudentDetails = () => {
                     </span>
                   </div>
                 </td>
-                <td className="p-4">{student.email}</td>
-                <td className="p-4">{student.studentClass?.className || '-'}</td>
-                <td className="p-4">{student.parentName || '-'}</td>
-                <td className="p-4">{student.parentContact || '-'}</td>
-                <td className="p-4">-</td>
-                <td className="p-4">
+                <td className="px-6 py-4 text-center">{student.email}</td>
+                <td className="px-6 py-4 text-center">{student.studentClass?.className || '-'}</td>
+                <td className="px-6 py-4 text-center">{student.parentName || '-'}</td>
+                <td className="px-6 py-4 text-center">{student.parentContact || '-'}</td>
+                <td className="px-6 py-4 text-center">-</td>
+                <td className="px-6 py-4">
                   <div className="flex justify-center gap-2">
                     <button className="p-1 hover:text-red-500 transition-colors duration-200 transform hover:scale-110">
                       <Trash2 size={18} />

@@ -77,7 +77,7 @@ const ClassAttendanceTracker = () => {
               className="w-full pl-10 pr-4 py-2   rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
             />
           </div>
-          <button className="ml-4 px-4 py-2 bg-purple-500 text-white rounded-lg hover:bg-purple-600">
+          <button className="ml-4 px-4 py-2 border-2 border-purple-500 text-purple-500 rounded-lg ">
             + Add New
           </button>
         </div>
@@ -92,7 +92,7 @@ const ClassAttendanceTracker = () => {
       <div className="flex justify-between items-center mb-4 ">
         <div className="flex items-center gap-4">
           <select 
-            className="p-2   rounded-lg text-xs text-gray-600 bg-slate-200"
+            className="p-2   rounded-lg text-xs text-gray-600 bg-slate-100"
             value={selectedClass}
             onChange={(e) => setSelectedClass(e.target.value)}
           >
@@ -106,7 +106,7 @@ const ClassAttendanceTracker = () => {
           
           <input 
             type="month"
-            className="p-2  rounded-lg text-xs text-gray-600 bg-slate-200"
+            className="p-2  rounded-lg text-xs text-gray-600 bg-slate-100"
             defaultValue="2024-02"
             onChange={(e) => {
               const [year, month] = e.target.value.split('-');
@@ -123,9 +123,9 @@ const ClassAttendanceTracker = () => {
         <table className="w-full border-collapse min-w-[768px] text-xs">
           <thead className="bg-purple-50 border-2 border-purple-50">
             <tr className="">
-              <th className="p-3 text-left w-64 text-gray-500 sticky left-0 bg-purple-50 whitespace-nowrap z-20">Student's Name</th>
+              <th className="px-6 py-4 text-left w-64 text-gray-500 sticky left-0 bg-purple-50 whitespace-nowrap z-20">Student's Name</th>
               {Array.from({ length: daysInMonth }, (_, i) => i + 1).map(day => (
-                <th key={day} className="p-3 text-center w-12  text-gray-500">
+                <th key={day} className="px-6 py-4 text-center w-12  text-gray-500">
                   {day}
                 </th>
               ))}
@@ -134,12 +134,12 @@ const ClassAttendanceTracker = () => {
           <tbody>
             {students.slice((currentPage - 1) * studentsPerPage, currentPage * studentsPerPage).map((student) => (
               <tr key={student.id} className="border-b border-gray-200">
-                <td className="p-3 text-gray-500 w-64 sticky left-0 bg-white whitespace-nowrap z-20">{student.name}</td>
+                <td className="px-6 py-4 text-gray-500 w-64 sticky left-0 bg-white whitespace-nowrap z-20">{student.name}</td>
                 {Array.from({ length: daysInMonth }, (_, i) => i + 1).map((day) => {
                   const date = new Date(selectedMonth.year, selectedMonth.month, day);
                   const isSunday = date.getDay() === 0;
                   return (
-                    <td key={day} className="p-3 text-center relative group">
+                    <td key={day} className="px-6 py-4 text-center relative group">
                       {isSunday ? (
                         <span className="text-gray-400">-</span>
                       ) : (

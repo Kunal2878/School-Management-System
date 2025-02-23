@@ -72,14 +72,14 @@ const TeacherDetails = () => {
             <span >Teachers</span>
           </div>
         </div>
-        <button className="px-4 py-2 bg-purple-500 text-sm text-white rounded-lg hover:bg-purple-600 transition-colors duration-200 transform hover:scale-105">
+        <button className="px-4 py-2 border-2 border-purple-500 text-sm text-purple-500 rounded-lg  transition-colors duration-200 transform hover:scale-105">
           + Add Teacher
         </button>
       </div>
 
       {/* Filters */}
       <div className="flex flex-col md:flex-row justify-between items-stretch md:items-center gap-4 mb-6">
-        <div className="relative flex-1 max-w-md bg-slate-200 text-gray-600">
+        <div className="relative flex-1 max-w-md bg-slate-100 text-gray-600">
           <Search className="absolute left-3 top-1/2 transform -translate-y-1/2  " size={20} />
           <input
             type="text"
@@ -94,7 +94,7 @@ const TeacherDetails = () => {
           <select
             value={selectedClass}
             onChange={(e) => setSelectedClass(e.target.value)}
-            className="p-2 mr-4 bg-slate-200 text-gray-600 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 transition-all duration-200"
+            className="p-2 mr-4 bg-slate-100 text-gray-600 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 transition-all duration-200"
           >
             <option value="all">All Classes</option>
             <option value="class1">Class 1</option>
@@ -119,7 +119,7 @@ const TeacherDetails = () => {
           <thead className='bg-purple-50'>
             <tr className="border-b">
               <th className="p-4">
-                <input type="checkbox" className="rounded bg-white" />
+                <input type="checkbox" className="rounded bg-white accent-purple-500" />
               </th>
               <th className="p-4 text-left">Teacher's Name</th>
               <th className="p-4 text-center">Email</th>
@@ -136,7 +136,7 @@ const TeacherDetails = () => {
                 className="border-b hover:bg-gray-50 transition-colors duration-150 animate-fade-in"
               >
                 <td className="p-4">
-                  <input type="checkbox" className="rounded" />
+                  <input type="checkbox" className="rounded bg-white accent-purple-500" />
                 </td>
                 <td className="p-4">
                   <div className="flex items-center gap-3">

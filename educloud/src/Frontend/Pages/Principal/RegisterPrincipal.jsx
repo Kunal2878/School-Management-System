@@ -42,28 +42,29 @@
     };
 
     return (
-      <div className="min-h-screen bg-gray-100 flex items-center justify-center p-4">
+      <div className="min-h-screen  flex items-center justify-center p-4">
         {showToast && <Toast message={toastMessage} iconName={toastIcon} />}
         <div className="max-w-md w-full space-y-8 bg-white p-8 rounded-xl shadow-lg hover:scale-[1.02] hover:shadow-2xl">
           <div className="text-center hover:transform hover:scale-105">
-            <h1 className="text-4xl font-bold text-purple-500 mb-2 hover:text-purple-600">Edu Cloud</h1>
-            <p className="text-gray-600 hover:text-gray-800">Create your account</p>
-          </div>
-        
-          <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-            <div className="relative hover:translate-y-[-2px]">
-              <User className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5 group-hover:text-purple-500" />
+            <h1 className="text-4xl font-bold text-purple-500 mb-2 hover:text-purple-600">Edu<span className='text-black'>Cloud</span></h1>
+                      <p className="text-yellow-600 hover:text-gray-800 text-lg font-medium w-full animate-typing">
+                        <i>Be the part of EduCloud! The perfect platform to shape the future of education.....</i>
+                      </p>
+
+                       </div>
+          <form onSubmit={handleSubmit(onSubmit)} className="space-y-6 shadow-lg rounded-lg">
+            <div className="relative mb-6">
               <input
                 {...register("name", { required: "Name is required" })}
-                className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent text-gray-600 hover:border-purple-500"
-                type="text"
+                className="w-full px-3 py-2 text-gray-600 border-b rounded-md focus:outline-none shadow-md transition-all peer placeholder-transparent"
                 placeholder="Full Name"
+                id="fullName"
               />
+              <label htmlFor="fullName" className="absolute left-3 -top-5 text-sm font-medium text-gray-700 transition-all peer-placeholder-shown:text-base peer-placeholder-shown:top-2 peer-focus:-top-5 peer-focus:text-sm"><span className="text-red-500">*</span>Full Name</label>
               {errors.name && <p className="text-red-500 text-sm mt-1">{errors.name.message}</p>}
             </div>
 
-            <div className="relative hover:translate-y-[-2px]">
-              <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5 group-hover:text-purple-500" />
+            <div className="relative mb-6">
               <input
                 {...register("email", {
                   required: "Email is required",
@@ -72,15 +73,16 @@
                     message: "Invalid email address"
                   }
                 })}
-                className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent text-gray-600 hover:border-purple-500"
+                className="w-full px-3 py-2 text-gray-600 border-b rounded-md focus:outline-none shadow-md transition-all peer placeholder-transparent"
                 type="email"
                 placeholder="Email Address"
+                id="email"
               />
+              <label htmlFor="email" className="absolute left-3 -top-5 text-sm font-medium text-gray-700 transition-all peer-placeholder-shown:text-base peer-placeholder-shown:top-2 peer-focus:-top-5 peer-focus:text-sm"><span className="text-red-500">*</span>Email Address</label>
               {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email.message}</p>}
             </div>
 
-            <div className="relative hover:translate-y-[-2px]">
-              <Briefcase className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5 group-hover:text-purple-500" />
+            <div className="relative mb-6">
               <input
                 {...register("experience", {
                   required: "Experience is required",
@@ -89,15 +91,16 @@
                     message: "Experience cannot be negative"
                   }
                 })}
-                className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent text-gray-600 hover:border-purple-500"
+                className="w-full px-3 py-2 text-gray-600 border-b rounded-md focus:outline-none shadow-md transition-all peer placeholder-transparent"
                 type="number"
-                placeholder="Experience (in years)"
+                placeholder="Experience"
+                id="experience"
               />
+              <label htmlFor="experience" className="absolute left-3 -top-5 text-sm font-medium text-gray-700 transition-all peer-placeholder-shown:text-base peer-placeholder-shown:top-2 peer-focus:-top-5 peer-focus:text-sm"><span className="text-red-500">*</span>Experience (in years)</label>
               {errors.experience && <p className="text-red-500 text-sm mt-1">{errors.experience.message}</p>}
             </div>
 
-            <div className="relative hover:translate-y-[-2px]">
-              <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5 group-hover:text-purple-500" />
+            <div className="relative mb-6">
               <input
                 {...register("password", {
                   required: "Password is required",
@@ -106,10 +109,12 @@
                     message: "Password must be at least 8 characters"
                   }
                 })}
-                className="w-full pl-10 pr-12 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent text-gray-600 hover:border-purple-500"
+                className="w-full px-3 py-2 text-gray-600 border-b rounded-md focus:outline-none shadow-md transition-all peer placeholder-transparent"
                 type={showPassword ? "text" : "password"}
                 placeholder="Password"
+                id="password"
               />
+              <label htmlFor="password" className="absolute left-3 -top-5 text-sm font-medium text-gray-700 transition-all peer-placeholder-shown:text-base peer-placeholder-shown:top-2 peer-focus:-top-5 peer-focus:text-sm"><span className="text-red-500">*</span>Password</label>
               <button
                 type="button"
                 onClick={() => setShowPassword(!showPassword)}
@@ -120,8 +125,7 @@
               {errors.password && <p className="text-red-500 text-sm mt-1">{errors.password.message}</p>}
             </div>
 
-            <div className="relative hover:translate-y-[-2px]">
-              <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5 group-hover:text-purple-500" />
+            <div className="relative mb-6">
               <input
                 {...register("confirmPassword", {
                   required: "Please confirm your password",
@@ -131,10 +135,12 @@
                     }
                   }
                 })}
-                className="w-full pl-10 pr-12 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent text-gray-600 hover:border-purple-500"
+                className="w-full px-3 py-2 text-gray-600 border-b rounded-md focus:outline-none shadow-md transition-all peer placeholder-transparent"
                 type={showConfirmPassword ? "text" : "password"}
                 placeholder="Confirm Password"
+                id="confirmPassword"
               />
+              <label htmlFor="confirmPassword" className="absolute left-3 -top-5 text-sm font-medium text-gray-700 transition-all peer-placeholder-shown:text-base peer-placeholder-shown:top-2 peer-focus:-top-5 peer-focus:text-sm"><span className="text-red-500">*</span>Confirm Password</label>
               <button
                 type="button"
                 onClick={() => setShowConfirmPassword(!showConfirmPassword)}
@@ -152,7 +158,7 @@
             <button
               type="submit"
               disabled={loading}
-              className="w-full flex items-center justify-center py-3 px-4 border border-transparent rounded-lg text-white bg-purple-500 hover:bg-purple-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 hover:scale-[1.02] hover:shadow-lg"
+              className="w-full flex items-center justify-center py-3 px-4  rounded-lg text-purple-500  focus:outline-none border-2 border-purple-500 hover:scale-[1.02] hover:shadow-lg"
             >
               {loading ? (
                 <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white"></div>

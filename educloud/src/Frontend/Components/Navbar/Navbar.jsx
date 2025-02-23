@@ -9,6 +9,8 @@ import ProfilePage from '../../Pages/AboutMe'
 import StudentDetails from '../Classes/AllStudents'
 import TeacherDetails from '../../Pages/Teacher/AllTeacher'
 import AssignClassSub from '../../Pages/Teacher/AssignClassSub'
+import Events from '../../Pages/Events'
+import RegisterClass from '../../Pages/Classes/RegisterClass'
 
 import { 
   Home, 
@@ -27,8 +29,10 @@ import {
   Truck,
   Clock,
   School,
-  GraduationCap
+  GraduationCap,
+  LogOut
 } from 'lucide-react';
+import { path } from 'framer-motion/client';
 
 
 
@@ -50,7 +54,7 @@ const NavBar = ({ User,onMenuClick }) => {
   };
 
   return (
-    <nav className="w-full  shadow-lg fixed flex flex-row top-0 z-50 bg-slate-200 pr-4">
+    <nav className="w-full  shadow-lg fixed flex flex-row top-0 z-50 bg-slate-200 pr-4 p-2">
      
         <div className="w-full flex flex-row  justify-between items-center">
           {/* Left side */}
@@ -63,26 +67,12 @@ const NavBar = ({ User,onMenuClick }) => {
                 <AlignLeft size={24} className='text-purple-500' />
               </button>
               {/* <School size={24} className="text-purple-500" /> */}
-              <span className="text-xl font-bold text-black"><span className="text-purple-500">Edu</span> Cloud</span>
+              <span className="text-xl font-bold text-black"><span className="text-purple-500">Edu</span>Cloud</span>
+            
+            
             </div>
            
-              {/* <School className="h-8 w-8 space-x-1" />
-              <span className="text-xl font-bold hidden md:block">{User?.name||''}</span> */}
-           
           
-
-          {/* Search bar - visible on larger screens */}
-          {/* <div className="hidden md:flex items-center flex-1 max-w-xl mx-4">
-            {/* <div className="w-full">
-              <input
-                type="text"
-                placeholder="What do you want to find?"
-                className="w-full px-4 py-2 rounded-md bg-white/10 text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-white/50"
-              />
-            </div> */}
-          {/* </div>  */}
-
-          {/* Right side */}
 
 
           <div className="flex flex-row items-center space-x-4">
@@ -90,27 +80,17 @@ const NavBar = ({ User,onMenuClick }) => {
               <Bell size={20} className='text-purple-500' />
             </button>
             
-         
-            <div className="relative flex flex-col">
-              <button 
-                onClick={() => setDropdownOpen(!dropdownOpen)}
-                className="flex items-center space-x-3 p-2  rounded-full transition-colors"
+              <button
+                onClick={handleSignOut}
+                className="p-1 w-24 rounded-md transition-colors cursor-ponter text-purple-500 border-2 border-purple-500 flex flex-row justify-center items-center "
               >
-                <div className="size-8 rounded-full border-2 border-purple-500"></div>
-                <ChevronDown size={20} className={` text-black transform transition-transform duration-200 ${dropdownOpen ? 'rotate-180' : ''}`} />
+              <LogOut size={12} className="text-purple-500 text-xs mr-1 " />  <span>Logout</span>
               </button>
+         <Link to="/profile" className="rounded-full size-8 text-purple-500 border-2 border-purple-500"><span>👤</span></Link>
 
-            
-              <div className={`
-                absolute right-0 mt-12 w-48 rounded-md shadow-lg py-1 bg-white
-                transform transition-all duration-200 ease-in-out
-                ${dropdownOpen ? 'opacity-100 scale-100' : 'opacity-0 scale-95 pointer-events-none'}
-              `}>
-                <Link to="/profile" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">My Profile</Link>
-                {/* <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Settings</a> */}
-                <button onClick={handleSignOut} className="block w-full text-center px-4 py-2 text-sm  text-purple-500 border-2 border-purple-500">Sign out</button>
-              </div>
-            </div>
+         
+
+
           </div>
           
         </div>
@@ -150,10 +130,10 @@ const [menuOpen, setMenuOpen]=useState(false)
           { label: 'Assign classes/Subjects', id: 'assign-classes-subjects',path:'/assign-classes-subjects' },
         ]
       },
-      { icon: BookOpen, label: 'Classes', id: 'classes' },      
-      { icon: FileText, label: 'Exam', id: 'exam' },
-      { icon: Clock, label: 'Time table', id: 'time-table' },
-      { icon: Calendar, label: 'Events', id: 'events' },
+      { icon: BookOpen, label: 'Classes', id: 'classes', path:'/register-class' },      
+      { icon: FileText, label: 'Exam', id: 'exam', path:'/exams' },
+      { icon: Clock, label: 'Time table', id: 'time-table', path:'/time-table' },
+      { icon: Calendar, label: 'Events', id: 'events', path:'/events' },
       
     ],
     teacher: [
@@ -180,35 +160,54 @@ const [menuOpen, setMenuOpen]=useState(false)
 
   return (
     <div className={`text-black
-      fixed left-0 top-8 h-[100vh-4em] w-64 shadow-lg 
-      bg-gray-50 transform transition-transform duration-300 ease-in-out overflow-y-auto
+      fixed left-0 top-14 h-screen w-64 shadow-lg 
+      bg-gray-50 transform transition-transform duration-300 ease-in-out
       ${isOpen ? 'translate-x-0 ' : '-translate-x-full'}
       overflow-y-auto
       z-40
+      [&::-webkit-scrollbar]:w-2
+      [&::-webkit-scrollbar-track]:bg-transparent
+      [&::-webkit-scrollbar-thumb]:bg-slate-200
+      [&::-webkit-scrollbar-thumb]:rounded-full
     `}>
       <div className="p-4">
         {menuItems[userType].map((item) => (
           <div key={item.id}>
-            <button
-              onClick={() => item.submenu ? toggleSubmenu(item.id) : setActiveItem(item.id)}
-              className={`
-                w-full flex items-center space-x-3 px-4 py-3 rounded-lg mb-1
-                transition-colors duration-200
-                ${activeItem === item.id ? themeColors[userType].active : 'text-black'}
-                ${themeColors[userType].hover}
-              `}
-            >
-              <item.icon size={20} />
-              <span className="flex-1 text-left">{item.label}</span>
-              {item.submenu && (
+            {item.submenu ? (
+              <button
+                onClick={() => toggleSubmenu(item.id)}
+                className={`
+                  w-full flex items-center space-x-3 px-4 py-3 rounded-lg mb-1
+                  transition-colors duration-200
+                  ${activeItem === item.id ? themeColors[userType].active : 'text-black'}
+                  ${themeColors[userType].hover}
+                `}
+              >
+                <item.icon size={20} />
+                <span className="flex-1 text-left">{item.label}</span>
                 <ChevronDown 
                   size={20} 
                   className={`transform transition-transform duration-200 
                     ${expandedMenus[item.id] ? 'rotate-180' : ''}`
                   }
                 />
-              )}
-            </button>
+              </button>
+            ) : (
+              <Link to={item.path || '/'}>
+                <button
+                  onClick={() => setActiveItem(item.id)}
+                  className={`
+                    w-full flex items-center space-x-3 px-4 py-3 rounded-lg mb-1
+                    transition-colors duration-200
+                    ${activeItem === item.id ? themeColors[userType].active : 'text-black'}
+                    ${themeColors[userType].hover}
+                  `}
+                >
+                  <item.icon size={20} />
+                  <span className="flex-1 text-left">{item.label}</span>
+                </button>
+              </Link>
+            )}
 
             {/* Submenu */}
             {item.submenu && (
@@ -218,18 +217,19 @@ const [menuOpen, setMenuOpen]=useState(false)
                 ${expandedMenus[item.id] ? 'max-h-40 opacity-100' : 'max-h-0 opacity-0 overflow-hidden'}
               `}>
                 {item.submenu.map((subItem) => (
-                  <button
-                    key={subItem.id}
-                    onClick={() => setActiveItem(subItem.id)}
-                    className={`
-                      w-full text-left py-2 px-4 rounded-lg
-                      transition-colors duration-200
-                      ${activeItem === subItem.id ? 'text-purple-500' : 'text-black'}
-                      ${themeColors[userType].hover}
-                    `}
-                  >
-                  <Link to={subItem.path}> {subItem.label}</Link> 
-                  </button>
+                  <Link key={subItem.id} to={subItem.path}>
+                    <button
+                      onClick={() => setActiveItem(subItem.id)}
+                      className={`
+                        w-full text-left py-2 px-4 rounded-lg
+                        transition-colors duration-200
+                        ${activeItem === subItem.id ? 'text-purple-500' : 'text-black'}
+                        ${themeColors[userType].hover}
+                      `}
+                    >
+                      {subItem.label}
+                    </button>
+                  </Link>
                 ))}
               </div>
             )}
@@ -270,6 +270,8 @@ const Nav = ({ children, path }) => {
 {path === '/all-students' && <StudentDetails />}
 {path === '/all-teachers' && <TeacherDetails />}
 {path === '/assign-classes-subjects' && <AssignClassSub />}
+{path === '/events' && <Events />}
+{path === '/register-class' && <RegisterClass />}
 
 </div>
 
